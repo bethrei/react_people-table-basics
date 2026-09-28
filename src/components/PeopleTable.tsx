@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { Person } from '../types';
 import { useParams } from 'react-router-dom';
 import { PersonLink } from './PersonLink';
@@ -11,20 +11,17 @@ type Props = {
 export const PeopleTable = React.memo(function PeopleTable({ people }: Props) {
   const { slug } = useParams();
 
-  const getParent = useCallback(
-    (child: Person, parent: 'father' | 'mother') => {
-      if (!child[`${parent}Name`]) {
-        return '-';
-      }
+  const getParent = (child: Person, parent: 'father' | 'mother') => {
+    if (!child[`${parent}Name`]) {
+      return '-';
+    }
 
-      if (!child[parent]) {
-        return child[`${parent}Name`];
-      }
+    if (!child[parent]) {
+      return child[`${parent}Name`];
+    }
 
-      return <PersonLink person={child[parent]} />;
-    },
-    [],
-  );
+    return <PersonLink person={child[parent]} />;
+  };
 
   return (
     <table
