@@ -1,11 +1,18 @@
-import { Link, Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import {
+  HashRouter,
+  Link,
+  Navigate,
+  Route,
+  Routes,
+  useLocation,
+} from 'react-router-dom';
 import './App.scss';
 import classNames from 'classnames';
 import { HomePage } from './pages/HomePage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { PeoplePage } from './pages/PeoplePage';
 
-export const App = () => {
+const AppContent = () => {
   const { pathname } = useLocation();
 
   return (
@@ -50,5 +57,13 @@ export const App = () => {
         </div>
       </main>
     </div>
+  );
+};
+
+export const App = () => {
+  return (
+    <HashRouter>
+      <AppContent />
+    </HashRouter>
   );
 };
